@@ -56,12 +56,12 @@ def convert_tomlkit_buggy_types(in_value: Any, parent: Any, key: str) -> Item:
 
 def sort_case_sensitive(value: Tuple[str, Item]) -> str:
     """Case sensitive function to pass to 'sorted' function."""
-    return value[0]
+    return value[0].replace("poetry", "!poetry") # poetry tables should come first
 
 
 def sort_case_insensitive(value: Tuple[str, Item]) -> str:
     """Case insensitive function to pass to 'sorted' function."""
-    return value[0].lower()
+    return value[0].lower().replace("poetry", "!poetry") # poetry tables should come first
 
 
 class TomlSort:
